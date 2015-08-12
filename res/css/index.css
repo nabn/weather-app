@@ -113,6 +113,14 @@ header div img {
 
 .boxTitle {
 	font-family: 'Avenir';
+	width: 90%;
+	float: left;
+}
+
+.exit {
+	width: 10%;
+	font-size: 100%;
+	text-align: center;
 }
 
 .wTemperature, .wIcon {
@@ -138,11 +146,23 @@ span ul {
 span ul li {
 	border-top: 1px solid RGBA(255,255,255,0.2);
 	font-family: 'Avenir Bold';
-	line-height: 30px;
+	/*line-height: 30px;*/
+}
+
+.dayName {
+	width: 25%;
 }
 
 .forecast {
+	width: 75%;
 	float: right;
+}
+
+.forecast li {
+	width: 33%;
+	text-align: center;
+	float: left;
+	/*line-height: 30px;*/
 }
 
 /* WIDE DESKTOP LAYOUT 
@@ -153,12 +173,15 @@ span ul li {
 	}
 	.wBox {
 		width:480px;
-		height: 360px;
+		height: 330px;
 		margin-left:8px;
 		margin-right:8px;
 	}
-	.boxTitle {
+	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 40px;
+		padding-top: 4px;
+	}
+	.boxTitle {
 		padding-left: 20px;
 		padding-top: 10px;
 	}
@@ -176,12 +199,15 @@ span ul li {
 	}
 	.wBox {
 		width: 368px;
-		height: 300px;
+		height: 270px;
 		margin-left:8px;
 		margin-right:8px;
 	}
-	.boxTitle {
+	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 30px;
+		padding-top: 4px;
+	}
+	.boxTitle {
 		padding-left: 20px;
 		padding-top: 10px;
 	}
@@ -197,17 +223,23 @@ span ul li {
 	}
 	.wBox {
 		width: 224px;
-		height: 220px;
+		height: 190px;
 		margin-left:8px;
 		margin-right:8px;
 	}
-	.boxTitle {
+	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 20px;
+		padding-top: 4px;
+	}
+	.boxTitle {
 		padding-left: 15px;
 		padding-top: 10px;
 	}
 	.wTemperature, .wIcon {
 		font-size: 30px;
+	}
+	.forecast {
+		width: 60%
 	}
 } /* CLOSE WIDE MOBILE LAYOUT
 
@@ -223,12 +255,27 @@ span ul li {
 		margin-left: 2.5%;
 		margin-right: 2.5%;
 	}
-	.boxTitle {
+	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 15px;
+		padding-top: 4px;
+	}
+	.boxTitle {
 		padding-left: 10px;
 		padding-top: 10px;
 	}
 	.wTemperature, .wIcon {
 		font-size: 20px;
+	}
+	.forecast {
+		width: 50%;
+		font-size: 12px;
+	}
+	.forecast li {
+		width: 15%;
+		margin-left: 8%;
+		margin-right: 8%;
+	}
+	sup span {
+		display: none;
 	}
 } /* CLOSE MOBILE LAYOUT

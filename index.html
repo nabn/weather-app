@@ -14,6 +14,7 @@
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<link rel="stylesheet" href="./res/css/index.css">
 		<link rel="stylesheet" href="./res/css/weather-icons.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	</head>
 
 	<body>
@@ -38,9 +39,12 @@
 		</div>
 		<div class="weatherWrapper">
 			<span class="wBox">
-				<h2 class="boxTitle">
-					New York
-				</h2>
+				<div>
+					<h2 class="boxTitle">
+						San Francisco
+					</h2>
+					<i class="fa fa-times-circle-o exit"></i>
+				</div>
 				<div class="wToday">
 					<div class="wTemperature">62<sup>°F</sup></div>
 					<div class="wIcon"><i class="wi wi-day-sunny"></i></div>
@@ -51,14 +55,25 @@
 						<span class="dayName">Wednesday</span>
 						<ul class="forecast">
 							<li class="wi wi-day-sunny"></li>
-							<li class="wiMax">55<sup>°F</sup></li>
+							<li class="wiMax">55<sup>°<span>F</span></sup></li>
+							<li class="wiMax">50<sup>°<span>F</span></sup></li>
 						</ul>
 					</li>
 					<li>
 						<span class="dayName">Thursday</span>
+						<ul class="forecast">
+							<li class="wi wi-day-sunny"></li>
+							<li class="wiMax">55<sup>°<span>F</span></sup></li>
+							<li class="wiMax">50<sup>°<span>F</span></sup></li>
+						</ul>
 					</li>
 					<li>
 						<span class="dayName">Friday</span>
+						<ul class="forecast">
+							<li class="wi wi-day-sunny"></li>
+							<li class="wiMax">55<sup>°<span>F</span></sup></li>
+							<li class="wiMax">50<sup>°<span>F</span></sup></li>
+						</ul>
 					</li>
 				</ul>
 			</span>
@@ -69,6 +84,7 @@
 		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+		<script src="./res/index.js"></script>
 	</body>
 
 
