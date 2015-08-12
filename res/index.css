@@ -1,0 +1,177 @@
+/* FONT IMPORTS
+----------------------------------------------- */
+@font-face {
+  font-family: 'Avenir';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/AvenirNextLTPro-Regular.otf);
+}
+
+/* MATERIALIZE CSS
+----------------------------------------------- */
+/* label color */
+.input-field label {
+ color: #9e9e9e;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color: #1976d2;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #1976d2;
+ box-shadow: 0 1px 0 0 #1976d2;
+}
+/* valid color */
+.input-field input[type=text].valid {
+ border-bottom: 1px solid #1976d2;
+ box-shadow: 0 1px 0 0 #1976d2;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid #1976d2;
+ box-shadow: 0 1px 0 0 #1976d2;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: #1976d2;
+}
+
+.row {
+	font-family: "Roboto", sans-serif;
+}
+
+.waves-effect.waves-teal .waves-ripple {
+	background-color: #1976d2
+}
+
+/* GENERAL STYLES
+----------------------------------------------- */
+html {
+	background: url(https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?q=80&fm=jpg&s=fa68c48c66a390579ae96eff13922404) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h2 {
+	margin: 0;
+}
+
+/* PAGE STRUCTURE
+----------------------------------------------- */
+header div {
+	position:fixed;
+	top:0;
+	width:100%;
+	z-index:9001;
+	background-color: #1976d2;
+	height: 64px;
+	text-align: center;
+	color: white;
+	font-family: 'Avenir';
+	line-height: 35px
+}
+
+.headerSpacer {
+	height: 64px;
+}
+
+header div img {
+	width: 140px;
+	margin: 0 auto;
+	display: block;
+	padding-top: 12px;
+}
+
+.weatherWrapper {
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.wBox {
+	background: rgba(10%, 10%, 10%, 0.40);
+	float: left;
+	color: white;
+	/*display: block;*/
+}
+
+.boxTitle {
+	font-family: 'Avenir';
+}
+/* WIDE DESKTOP LAYOUT 
+----------------------------------------------- */
+@media only screen and (min-width: 992px) {
+	.weatherWrapper {
+		width: 992px;
+	}
+	.wBox {
+		width:480px;
+		height: 400px;
+		margin-left:8px;
+		margin-right:8px;
+	}
+	.boxTitle {
+		font-size: 40px;
+		padding-left: 20px;
+		padding-top: 10px;
+	}
+
+} /* CLOSE WIDE LAYOUT */
+
+/* TABLET LAYOUT 
+----------------------------------------------- */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.weatherWrapper {
+		width: 768px;
+	}
+	.wBox {
+		width: 368px;
+		height: 300px;
+		margin-left:8px;
+		margin-right:8px;
+	}
+	.boxTitle {
+		font-size: 30px;
+		padding-left: 20px;
+		padding-top: 10px;
+	}
+} /* CLOSE TABLET LAYOUT */
+/* WIDE MOBILE LAYOUT (LANDSCAPE/480PX) 
+----------------------------------------------- */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	.weatherWrapper {
+		width: 480px;
+	}
+	.wBox {
+		width: 224px;
+		height: 200px;
+		margin-left:8px;
+		margin-right:8px;
+	}
+	.boxTitle {
+		font-size: 20px;
+		padding-left: 15px;
+		padding-top: 10px;
+	}
+} /* CLOSE WIDE MOBILE LAYOUT
+
+/* MOBILE LAYOUT (PORTRAIT/320PX) 
+----------------------------------------------- */
+@media only screen and (max-width: 480px) {
+	.weatherWrapper {
+		width: 90%;
+	}
+	.wBox {
+		width: 40%;
+		height: 100px;
+		margin-left: 5%;
+		margin-right: 5%;
+	}
+	.boxTitle {
+		font-size: 15px;
+		padding-left: 10px;
+		padding-top: 10px;
+	}
+} /* CLOSE MOBILE LAYOUT */
