@@ -121,6 +121,7 @@ header div img {
 	width: 10%;
 	font-size: 100%;
 	text-align: center;
+	cursor: pointer;
 }
 
 .wTemperature, .wIcon {
@@ -174,8 +175,7 @@ span ul li {
 	.wBox {
 		width:480px;
 		height: 330px;
-		margin-left:8px;
-		margin-right:8px;
+		margin:8px;
 	}
 	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 40px;
@@ -200,8 +200,7 @@ span ul li {
 	.wBox {
 		width: 368px;
 		height: 270px;
-		margin-left:8px;
-		margin-right:8px;
+		margin:8px;
 	}
 	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 30px;
@@ -224,8 +223,7 @@ span ul li {
 	.wBox {
 		width: 224px;
 		height: 190px;
-		margin-left:8px;
-		margin-right:8px;
+		margin:8px;
 	}
 	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 20px;
@@ -252,8 +250,7 @@ span ul li {
 	.wBox {
 		width: 45%;
 		height: 200px;
-		margin-left: 2.5%;
-		margin-right: 2.5%;
+		margin: 2.5%;
 	}
 	.boxTitle, .fa.fa-times-circle-o.exit {
 		font-size: 15px;

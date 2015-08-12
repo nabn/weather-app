@@ -38,7 +38,46 @@
 			</form>
 		</div>
 		<div class="weatherWrapper">
-			<span class="wBox">
+			<span id="original" style="display:none" class="wBox"><!---------------------------------------------------------->
+				<div>
+					<h2 class="boxTitle">
+						
+					</h2>
+					<i class="fa fa-times-circle-o exit"></i>
+				</div>
+				<div class="wToday">
+					<div class="wTemperature"><sup>°F</sup></div>
+					<div class="wIcon"><i class="wi wi-day-sunny"></i></div>
+					<p class="wDay"></p>
+				</div>
+				<ul>
+					<li>
+						<span class="dayName"></span>
+						<ul class="forecast">
+							<li class="wi wi-day-sunny"></li>
+							<li class="wiMax"><sup>°<span>F</span></sup></li>
+							<li class="wiMax"><sup>°<span>F</span></sup></li>
+						</ul>
+					</li>
+					<li>
+						<span class="dayName"></span>
+						<ul class="forecast">
+							<li class="wi wi-day-sunny"></li>
+							<li class="wiMax"><sup>°<span>F</span></sup></li>
+							<li class="wiMax"><sup>°<span>F</span></sup></li>
+						</ul>
+					</li>
+					<li>
+						<span class="dayName"></span>
+						<ul class="forecast">
+							<li class="wi wi-day-sunny"></li>
+							<li class="wiMax"><sup>°<span>F</span></sup></li>
+							<li class="wiMax"><sup>°<span>F</span></sup></li>
+						</ul>
+					</li>
+				</ul>
+			</span>
+			<span class="wBox"><!---------------------------------------------------------->
 				<div>
 					<h2 class="boxTitle">
 						San Francisco
@@ -76,11 +115,7 @@
 						</ul>
 					</li>
 				</ul>
-			</span>
-			<span class="wBox">
-				ay
-				
-			</span>
+			</span><!---------------------------------------------------------->
 		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
