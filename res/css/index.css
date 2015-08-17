@@ -166,6 +166,13 @@ span ul li {
 	/*line-height: 30px;*/
 }
 
+#empty {
+	text-align: center;
+	color: rgba(10%, 10%, 10%, 0.40);
+	font-size: 2.8vmin;
+	font-family: 'Avenir';	
+}
+
 /* WIDE DESKTOP LAYOUT 
 ----------------------------------------------- */
 @media only screen and (min-width: 992px) {

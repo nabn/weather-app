@@ -12,25 +12,24 @@ function setWeatherIcon(element, description) {
 		{keyWord:'drizzle', wi: 'wi wi-day-sprinkle'},
 		{keyWord:'rain', wi: 'wi wi-day-rain'},
 		{keyWord:'thunderstorm', wi: 'wi wi-day-thunderstorm'},
-		{keyWord:'snow', wi: 'wi wi-day-snow'}
+		{keyWord:'snow', wi: 'wi wi-day-snow'},
+		{keyWord:'cloud', wi: 'wi wi-day-cloudy'}
 	];
 	for (var i = 0; i < keyWords.length; i++) {
 		var regex = new RegExp(keyWords[i].keyWord, 'i');
 		if (description.match(regex)) {
 			$(element).removeClass().addClass(keyWords[i].wi);
 			break;
-		} else {
-			$(element).removeClass().addClass(keyWords[2].wi);
 		}
 	}
 }
 
-$( ".waves-effect.waves-teal.btn-flat" ).click(function() {
-	city = '?city=' + $( '#city' ).val().split(' ').join('%20');
-	state = '&state=' + $( '#state' ).val();
+function addWBox() {
+	var name = $( '#city' ).val();
+	var city = '?city=' + name.split(' ').join('%20');
+	var state = '&state=' + $( '#state' ).val();
 
 	var fetchData = new XMLHttpRequest();
-	// var url = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/e3f72fc463d20d5dd1a173efc6e8a74ae44a977e/?city=New%20york&state=ny";
 	var url = BASE_URL + city + state;
 	
 	// Setup GET Request to fetch weather data
@@ -53,11 +52,8 @@ $( ".waves-effect.waves-teal.btn-flat" ).click(function() {
 			var dayThree = grabDayData(data, 2);
 			var dayFour = grabDayData(data, 3);
 
-			console.log(data);
-
-			// $neWbox.find('h2').text("New York");
 			// Set weather box data
-			$neWbox.find('h2').text($( '#city' ).val());
+			$neWbox.find('h2').text(name);
 			$neWbox.find('.wTemperature').text(today.current_temp_fahrenheit);			
 			$neWbox.find('.wDay').text(Object.keys(data[0])[0]);
 
@@ -86,5 +82,15 @@ $( ".waves-effect.waves-teal.btn-flat" ).click(function() {
 		}
 	}
 	fetchData.send();
+
+	$( '#empty' ).fadeOut();
+
+}
+
+$(document).ready(function(){
+	$( ".waves-effect.waves-teal.btn-flat" ).click(addWBox);
+    $( "input" ).keypress(function(e){
+      if(e.keyCode == 13)
+	      addWBox();
+    });
 });
-//https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/3f8f8ed5f96a083e0655b937816b346d43efc411/?city=Tampa&state=FL
