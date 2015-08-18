@@ -13,13 +13,16 @@ function setWeatherIcon(element, description) {
 		{keyWord:'rain', wi: 'wi wi-day-rain'},
 		{keyWord:'thunderstorm', wi: 'wi wi-day-thunderstorm'},
 		{keyWord:'snow', wi: 'wi wi-day-snow'},
-		{keyWord:'cloud', wi: 'wi wi-day-cloudy'}
+		{keyWord:'cloud', wi: 'wi wi-day-cloudy'},
+		{keyWord:'haze', wi: 'wi wi-day-haze'}
 	];
 	for (var i = 0; i < keyWords.length; i++) {
 		var regex = new RegExp(keyWords[i].keyWord, 'i');
 		if (description.match(regex)) {
 			$(element).removeClass().addClass(keyWords[i].wi);
 			break;
+		} else {
+			$(element).removeClass().addClass('wi-day-cloudy');
 		}
 	}
 }
