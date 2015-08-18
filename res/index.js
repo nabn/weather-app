@@ -60,9 +60,19 @@ function addWBox() {
 			$neWbox.find('.wTemperature').text(today.current_temp_fahrenheit);			
 			$neWbox.find('.wDay').text(Object.keys(data[0])[0]);
 
-			$($neWbox.find('.dayName')[0]).text(Object.keys(data[1])[0]);
-			$($neWbox.find('.dayName')[1]).text(Object.keys(data[2])[0]);
-			$($neWbox.find('.dayName')[2]).text(Object.keys(data[3])[0]);
+			var tomorrowName = Object.keys(data[1])[0].substring(0, 3);
+			var dayTreeName = Object.keys(data[2])[0].substring(0, 3);
+			var dayFourName = Object.keys(data[3])[0].substring(0, 3);
+
+			if ($(window).width() < 480) {
+				$($neWbox.find('.dayName')[0]).text(tomorrowName);
+				$($neWbox.find('.dayName')[1]).text(dayTreeName);
+				$($neWbox.find('.dayName')[2]).text(dayFourName);
+			} else {
+				$($neWbox.find('.dayName')[0]).text(tomorrowName);
+				$($neWbox.find('.dayName')[1]).text(dayTreeName);
+				$($neWbox.find('.dayName')[2]).text(dayFourName);
+			}
 
 			$($neWbox.find('.wiMin')[0]).text(tomorrow.temp_min_average_fahrenheit);
 			$($neWbox.find('.wiMin')[1]).text(dayThree.temp_min_average_fahrenheit);
@@ -96,4 +106,13 @@ $(document).ready(function(){
       if(e.keyCode == 13)
 	      addWBox();
     });
+});
+
+$(window).resize(function() {
+	if ($(window).width() < 480) {
+		var $dayNames = $( '.dayName' );
+		for (var i = 0; i < $dayNames.length; i++) {
+			$($dayNames[i]).text($($dayNames[i]).text().substring(0, 3));
+		}
+	}
 });
