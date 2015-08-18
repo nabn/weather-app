@@ -60,14 +60,14 @@ function addWBox() {
 			$neWbox.find('.wTemperature').text(today.current_temp_fahrenheit);			
 			$neWbox.find('.wDay').text(Object.keys(data[0])[0]);
 
-			var tomorrowName = Object.keys(data[1])[0].substring(0, 3);
-			var dayTreeName = Object.keys(data[2])[0].substring(0, 3);
-			var dayFourName = Object.keys(data[3])[0].substring(0, 3);
+			var tomorrowName = Object.keys(data[1])[0];
+			var dayTreeName = Object.keys(data[2])[0];
+			var dayFourName = Object.keys(data[3])[0];
 
 			if ($(window).width() < 480) {
-				$($neWbox.find('.dayName')[0]).text(tomorrowName);
-				$($neWbox.find('.dayName')[1]).text(dayTreeName);
-				$($neWbox.find('.dayName')[2]).text(dayFourName);
+				$($neWbox.find('.dayName')[0]).text(tomorrowName.substring(0, 3));
+				$($neWbox.find('.dayName')[1]).text(dayTreeName.substring(0, 3));
+				$($neWbox.find('.dayName')[2]).text(dayFourName.substring(0, 3));
 			} else {
 				$($neWbox.find('.dayName')[0]).text(tomorrowName);
 				$($neWbox.find('.dayName')[1]).text(dayTreeName);
