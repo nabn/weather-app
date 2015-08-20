@@ -1,15 +1,23 @@
-var BASE_URL = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/0493e2e0f68f33b2c56ca3865f7ca7ca64734982/";
+/*
+Weather App Javascript | MIT License
+This weather app fetches the weather data of a city and continually updates it
+*/
 
+// Setup
+var BASE_URL = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/0493e2e0f68f33b2c56ca3865f7ca7ca64734982/";
 var syncano = new Syncano({
 	apiKey: '04c08cbd87c316b883463452d86562c4789f027b',
 	instance: "weathered-river-7002"
 });
 
+// Functions
 function grabDayData(data, index) {
+	// Returns the data of a single day that's stored in the JSON Response 
 	return data[index][Object.keys(data[index])]
 }
 
 function setWeatherIcon(element, description) {
+	// Parses the weather description and sets the proper weather icon
 	var keyWords = [
 		{keyWord:'mist', wi: 'wi wi-day-fog'},
 		{keyWord:'fog', wi: 'wi wi-day-fog'},
@@ -33,6 +41,8 @@ function setWeatherIcon(element, description) {
 }
 
 function watch(lastId, room, $weatherBox) {
+	// Creates a Syncano channel and checks for updates.
+	// If there is an update, it will update the temperature and/or weather icon if necessary
 	syncano.channel("weather_realtime").poll({lastId: lastId, room: room})
 	.then(function(res) {
 		if (res !== undefined) {
@@ -55,6 +65,7 @@ function watch(lastId, room, $weatherBox) {
 }
 
 function addWBox() {
+	// Creates a weather box whenever the 'Add' button is pressed.
 	var name = $( '#city' ).val();
 	var city = '?city=' + name.split(' ').join('%20');
 	var state = '&state=' + $( '#state' ).val();
@@ -131,6 +142,7 @@ function addWBox() {
 
 }
 
+// Set onClick handler for button and Enter Key for text boxes
 $(document).ready(function(){
 	$( ".waves-effect.waves-teal.btn-flat" ).click(addWBox);
     $( "input" ).keypress(function(e){
@@ -139,6 +151,7 @@ $(document).ready(function(){
     });
 });
 
+// Minimizes day names on smaller screens
 $(window).resize(function() {
 	if ($(window).width() < 480) {
 		var $dayNames = $( '.dayName' );
