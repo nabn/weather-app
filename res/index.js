@@ -1,5 +1,10 @@
 var BASE_URL = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/0493e2e0f68f33b2c56ca3865f7ca7ca64734982/";
 
+var syncano = new Syncano({
+	apiKey: '04c08cbd87c316b883463452d86562c4789f027b',
+	instance: "weathered-river-7002"
+});
+
 function grabDayData(data, index) {
 	return data[index][Object.keys(data[index])]
 }
@@ -27,6 +32,28 @@ function setWeatherIcon(element, description) {
 	}
 }
 
+function watch(lastId, room, $weatherBox) {
+	syncano.channel("weather_realtime").poll({lastId: lastId, room: room})
+	.then(function(res) {
+		if (res !== undefined) {
+			lastId = res.id;
+			console.log(res);
+			var data = res.payload;
+			if (data.current_temp_fahrenheit) {
+				$weatherBox.find('.wTemperature').text(data.current_temp_fahrenheit);
+				$('<sup>°<span>F</span></sup>').appendTo($neWbox.find('.wTemperature'));
+			}
+			if (data.more_descriptive_description)
+				setWeatherIcon($weatherBox.find('.wi')[0], today.more_descriptive_description);
+		}
+		watch(lastId, room, $weatherBox);
+	})
+	.catch(function(err) {
+		console.log(err);
+		watch(lastId, room, $weatherBox);
+	});
+}
+
 function addWBox() {
 	var name = $( '#city' ).val();
 	var city = '?city=' + name.split(' ').join('%20');
@@ -43,6 +70,8 @@ function addWBox() {
 		    var data = JSON.parse(JSON.parse(fetchData.responseText).result.stdout);
 		    $neWbox = $( "#original" ).clone().appendTo( ".weatherWrapper" );
 			$neWbox.removeAttr('id');
+
+			console.log(data);
 			
 			$( '.exit' ).click(function() {
 				$(this).parent().parent().fadeOut(function() {
@@ -57,7 +86,7 @@ function addWBox() {
 
 			// Set weather box data
 			$neWbox.find('h2').text(name);
-			$neWbox.find('.wTemperature').text(today.current_temp_fahrenheit);			
+			$neWbox.find('.wTemperature').text(today.current_temp_fahrenheit);
 			$neWbox.find('.wDay').text(Object.keys(data[0])[0]);
 
 			var tomorrowName = Object.keys(data[1])[0];
@@ -92,6 +121,8 @@ function addWBox() {
 			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], dayFour.more_descriptive_description);
 
 			$neWbox.fadeIn();
+
+			watch(undefined, today.city_id, $neWbox);
 		}
 	}
 	fetchData.send();
