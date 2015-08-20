@@ -1,4 +1,4 @@
-var BASE_URL = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/e3f72fc463d20d5dd1a173efc6e8a74ae44a977e/";
+var BASE_URL = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/0493e2e0f68f33b2c56ca3865f7ca7ca64734982/";
 
 function grabDayData(data, index) {
 	return data[index][Object.keys(data[index])]
