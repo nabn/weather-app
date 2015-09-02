@@ -4,7 +4,8 @@ This weather app fetches the weather data of a city and continually updates it
 */
 
 // Setup
-var BASE_URL = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/0493e2e0f68f33b2c56ca3865f7ca7ca64734982/";
+var scale = "°F";
+var BASE_URL = "https://api.syncano.io/v1/instances/weathered-river-7002/webhooks/p/caa268830ac628542178f811fbf898df34b3fefe/";
 var syncano = new Syncano({
 	apiKey: '04c08cbd87c316b883463452d86562c4789f027b',
 	instance: "weathered-river-7002"
@@ -50,11 +51,15 @@ function watch(lastId, room, $weatherBox) {
 			console.log(res);
 			var data = res.payload;
 			if (data.current_temp_fahrenheit) {
-				$weatherBox.find('.wTemperature').text(data.current_temp_fahrenheit);
-				$('<sup>°<span>F</span></sup>').appendTo($neWbox.find('.wTemperature'));
+				var temp = data.current_temp_fahrenheit;
+				if (scale === '°C') {
+					temp = Math.round((temp - 32) * 5 / 9);
+				}
+				$weatherBox.find('.wTemperature').text(temp);
+				$('<sup>'+scale+'</sup>').appendTo($weatherBox.find('.wTemperature'));
 			}
 			if (data.more_descriptive_description)
-				setWeatherIcon($weatherBox.find('.wi')[0], today.more_descriptive_description);
+				setWeatherIcon($weatherBox.find('.wi')[0], dayOne.more_descriptive_description);
 		}
 		watch(lastId, room, $weatherBox);
 	})
@@ -90,50 +95,60 @@ function addWBox() {
 				}.bind());
 			});
 
-			var today = grabDayData(data, 0);
-			var tomorrow = grabDayData(data, 1);
-			var dayThree = grabDayData(data, 2);
-			var dayFour = grabDayData(data, 3);
+			var dayOne = data[0];
+			var dayTwo = data[1];
+			var dayThree = data[2];
+			var dayFour = data[3];
 
 			// Set weather box data
 			$neWbox.find('h2').text(name);
-			$neWbox.find('.wTemperature').text(today.current_temp_fahrenheit);
-			$neWbox.find('.wDay').text(Object.keys(data[0])[0]);
 
-			var tomorrowName = Object.keys(data[1])[0];
-			var dayTreeName = Object.keys(data[2])[0];
-			var dayFourName = Object.keys(data[3])[0];
+			var dayOneName = new Date(dayOne.utc*1000);
+			var dayTwoName = new Date(dayTwo.utc*1000);
+			var dayThreeName = new Date(dayThree.utc*1000);
+			var dayFourName = new Date(dayFour.utc*1000);
 
-			if ($(window).width() < 480) {
-				$($neWbox.find('.dayName')[0]).text(tomorrowName.substring(0, 3));
-				$($neWbox.find('.dayName')[1]).text(dayTreeName.substring(0, 3));
-				$($neWbox.find('.dayName')[2]).text(dayFourName.substring(0, 3));
-			} else {
-				$($neWbox.find('.dayName')[0]).text(tomorrowName);
-				$($neWbox.find('.dayName')[1]).text(dayTreeName);
-				$($neWbox.find('.dayName')[2]).text(dayFourName);
+			$neWbox.find('.wDay').text(dayOneName.toDateString().substring(0, 3));
+
+			var dayTwoName = dayTwoName.toDateString().substring(0, 3);
+			var dayThreeName = dayThreeName.toDateString().substring(0, 3);
+			var dayFourName = dayFourName.toDateString().substring(0, 3);
+
+			$($neWbox.find('.dayName')[0]).text(dayTwoName);
+			$($neWbox.find('.dayName')[1]).text(dayThreeName);
+			$($neWbox.find('.dayName')[2]).text(dayFourName);
+
+			var low = 'fahrenheit_low';
+			var high = 'fahrenheit_high';
+			var curr = 'current_temp_fahrenheit';
+			if (scale === '°C') {
+				low = 'celsius_low';
+				high = 'celsius_high';
+				curr = 'current_temp_celsius';
 			}
 
-			$($neWbox.find('.wiMin')[0]).text(tomorrow.temp_min_average_fahrenheit);
-			$($neWbox.find('.wiMin')[1]).text(dayThree.temp_min_average_fahrenheit);
-			$($neWbox.find('.wiMin')[2]).text(dayFour.temp_min_average_fahrenheit);
+			$neWbox.find('.wTemperature').text(dayOne[curr]);
 
-			$($neWbox.find('.wiMax')[0]).text(tomorrow.temp_max_average_fahrenheit);
-			$($neWbox.find('.wiMax')[1]).text(dayThree.temp_max_average_fahrenheit);
-			$($neWbox.find('.wiMax')[2]).text(dayFour.temp_max_average_fahrenheit);
+			$($neWbox.find('.wiMin')[0]).text(dayTwo[low]);
+			$($neWbox.find('.wiMin')[1]).text(dayThree[low]);
+			$($neWbox.find('.wiMin')[2]).text(dayFour[low]);
 
-			$('<sup>°<span>F</span></sup>').appendTo($neWbox.find('.wiMin'));
-			$('<sup>°<span>F</span></sup>').appendTo($neWbox.find('.wiMax'));
-			$('<sup>°<span>F</span></sup>').appendTo($neWbox.find('.wTemperature'));
+			$($neWbox.find('.wiMax')[0]).text(dayTwo[high]);
+			$($neWbox.find('.wiMax')[1]).text(dayThree[high]);
+			$($neWbox.find('.wiMax')[2]).text(dayFour[high]);
 
-			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], today.more_descriptive_description);
-			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], tomorrow.more_descriptive_description);
-			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], dayThree.more_descriptive_description);
-			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], dayFour.more_descriptive_description);
+			$('<sup>'+scale+'</sup>').appendTo($neWbox.find('.wiMin'));
+			$('<sup>'+scale+'</sup>').appendTo($neWbox.find('.wiMax'));
+			$('<sup>'+scale+'</sup>').appendTo($neWbox.find('.wTemperature'));
+
+			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], dayOne.long_description);
+			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], dayTwo.long_description);
+			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], dayThree.long_description);
+			setWeatherIcon($neWbox.find('.wi.wi-alien')[0], dayFour.long_description);
 
 			$neWbox.fadeIn();
 
-			watch(undefined, today.city_id, $neWbox);
+			watch(undefined, dayOne.city_id, $neWbox);
 		}
 	}
 	fetchData.send();
@@ -142,21 +157,45 @@ function addWBox() {
 
 }
 
+function cToF(string) {
+	return Math.round(Number(string.replace('°C','')) * 9 / 5 + 32);
+}
+
+function fToC(string) {
+	return Math.round((Number(string.replace('°F','')) - 32) * 5 / 9);
+}
+
+function toggleScale() {
+	if (scale === '°F') {
+		scale = '°C';
+		$('#scale').text('°C');
+	} else {
+		scale = '°F';
+		$('#scale').text('°F');
+	}
+
+	var temps = $('.wTemperature, .wiMax, .wiMin');
+	temps.splice(0,7); //removes the original weatherBox elements from array
+	for (var i = 0; i < temps.length; i++) {
+		temps[i] = $(temps[i]);
+		if (scale === '°F' && temps[i].text().indexOf('C') > -1) {
+			temps[i].text(cToF(temps[i].text()));
+		} else if (scale === '°C' && temps[i].text().indexOf('F') > -1) {
+			temps[i].text(fToC(temps[i].text()));
+		}
+		$('<sup>'+scale+'</sup>').appendTo(temps[i]);
+	}
+
+
+	
+}
+
 // Set onClick handler for button and Enter Key for text boxes
 $(document).ready(function(){
 	$( ".waves-effect.waves-teal.btn-flat" ).click(addWBox);
-    $( "input" ).keypress(function(e){
-      if(e.keyCode == 13)
-	      addWBox();
+	$( "input" ).keypress(function(e) {
+		if (e.keyCode == 13)
+			addWBox();
     });
-});
-
-// Minimizes day names on smaller screens
-$(window).resize(function() {
-	if ($(window).width() < 480) {
-		var $dayNames = $( '.dayName' );
-		for (var i = 0; i < $dayNames.length; i++) {
-			$($dayNames[i]).text($($dayNames[i]).text().substring(0, 3));
-		}
-	}
+	$( "#scale" ).click(toggleScale);
 });

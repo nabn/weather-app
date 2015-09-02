@@ -99,10 +99,18 @@ header div img {
 	padding-top: 12px;
 }
 
+#scale {
+	position: fixed;
+	bottom: 45px;
+	right: 24px;
+	background-color: rgba(10%, 10%, 10%, 0.40);
+	z-index: 90000000;
+}
+
 .weatherWrapper {
 	margin: 0 auto;
 	overflow: hidden;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 .wBox {
