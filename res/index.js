@@ -184,10 +184,7 @@ function toggleScale() {
 			temps[i].text(fToC(temps[i].text()));
 		}
 		$('<sup>'+scale+'</sup>').appendTo(temps[i]);
-	}
-
-
-	
+	}	
 }
 
 // Set onClick handler for button and Enter Key for text boxes
