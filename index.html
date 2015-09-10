@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<title>Weather App</title>
+
+		<!-- META  -->
 		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 		<meta content="utf-8" http-equiv="encoding">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="theme-color" content="#1976d2">
 		<link rel="shortcut icon" href="https://dashboard.syncano.io/img/favicon-16x16-48dc506ad6.png">
 		<meta name="description" content="A weather app built on Syncano.">
-        <meta name="keywords" content="real-time apps, real-time app, front-end code, weather, app, demo">
+    <meta name="keywords" content="real-time apps, real-time app, front-end code, weather, app, demo">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<link rel="stylesheet" href="./res/css/index.css">
-		<link rel="stylesheet" href="./res/css/weather-icons.css">
+		<!-- STYLES  -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+		<link rel="stylesheet" href="./css/index.css">
+		<link rel="stylesheet" href="./css/weather-icons.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	</head>
 
@@ -24,12 +27,12 @@
 				Weather App Demo
 			</div>
 		</header>
-		<a id="scale" class="btn-floating btn-large waves-effect waves-light blue">°F</a>
+		<a id="scale" class="btn-floating btn-large waves-effect waves-light blue">°<span>F</span></a>
 		<div class="background"></div>
 		<div class="headerSpacer"></div>
 		<div class="weatherWrapper">
 			<div class="row">
-				<form class="col s12">      
+				<form class="col s12">
 				    <div class="input-field col s7">
 				      <input id="city" type="text" class="validate"></input>
 				      <label for="city">City</label>
@@ -46,52 +49,40 @@
 			<div id="empty">
 				Add a weather box! <i>For example: "New York", "NY"</i>
 			</div>
-			<span id="original" style="display:none" class="wBox">
+		</div>
+
+		<script id="wBox-template" type="text/x-handlebars-template">
+			<span class="wBox" data-cityid={{cityId}}>
 				<div>
-					<h2 class="boxTitle">
-						
-					</h2>
+					<h2 class="boxTitle">{{name}}</h2>
 					<i class="fa fa-times-circle-o exit"></i>
 				</div>
 				<div class="wToday">
-					<div class="wTemperature"><sup>°F</sup></div>
-					<div class="wIcon"><i class="wi wi-alien"></i></div>
-					<p class="wDay"></p>
+					<div class="wTemperature" data-temp={{currentTemp.temp}}>{{displayTemp currentTemp.temp}}</div>
+					<div class="wIcon">{{displayIcon currentTemp.short_description}}</div>
+					<p class="wDay">{{displayDay currentTemp.utc}}</p>
 				</div>
 				<ul>
+					{{#each temps}}
 					<li>
-						<span class="dayName"></span>
+						<span class="dayName">{{displayDay utc}}</span>
 						<ul class="forecast">
-							<li class="wi wi-alien"></li>
-							<li class="wiMin"><sup>°<span>F</span></sup></li>
-							<li class="wiMax"><sup>°<span>F</span></sup></li>
+							<li>{{displayIcon short_description}}</li>
+							<li class="wiMin" data-temp={{temp_low}}>{{displayTemp temp_low}}</li>
+							<li class="wiMax" data-temp={{temp_high}}>{{displayTemp temp_high}}</li>
 						</ul>
 					</li>
-					<li>
-						<span class="dayName"></span>
-						<ul class="forecast">
-							<li class="wi wi-alien"></li>
-							<li class="wiMin"><sup>°<span>F</span></sup></li>
-							<li class="wiMax"><sup>°<span>F</span></sup></li>
-						</ul>
-					</li>
-					<li>
-						<span class="dayName"></span>
-						<ul class="forecast">
-							<li class="wi wi-alien"></li>
-							<li class="wiMin"><sup>°<span>F</span></sup></li>
-							<li class="wiMax"><sup>°<span>F</span></sup></li>
-						</ul>
-					</li>
+					{{/each}}
 				</ul>
 			</span>
-		</div>
+		</script>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-		<script src="./bower_components/bluebird/js/browser/bluebird.min.js"></script>
-		<script src="./bower_components/lodash/lodash.min.js"></script>
-		<script src="./bower_components/syncano/dist/syncano.min.js"></script>
-
-		<script src="./res/index.js"></script>
+		<script src="./scripts/vendor/jquery-1.11.3.min.js"></script>
+		<script src="./scripts/vendor/handlebars.js"></script>
+		<script src="./scripts/vendor/materialize.min.js"></script>
+		<script src="./scripts/vendor/bluebird.min.js"></script>
+		<script src="./scripts/vendor/lodash.min.js"></script>
+		<script src="./scripts/vendor/syncano.min.js"></script>
+		<script src="./scripts/index.js"></script>
 	</body>
 </html>
