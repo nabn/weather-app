@@ -78,7 +78,9 @@ Copy and store your `Account Key` for the next step.
 3. In the left side menu, click "CodeBoxes"
 4. Click the `get_weather` CodeBox
 
-You should now be at the `Edit` screen with some `Python` code in an editor window. If you want to test the CodeBox, you would do that here.  For right now, just click `Config`. Here is another editor window, with the following `JSON` object.
+You should now be at the `Edit` screen with some `Python` code in an editor window. We will come back to this later.
+
+For right now, click `Config`. Here is another editor window, with the following `JSON` object.
 
 ```
 {
@@ -104,12 +106,18 @@ Now click the play button on the right, and the terminal window will display the
 ####Update Remaining Configurations
 We need to update both the `update_city_weather` and `update_all_current_weather` configurations.
 
+#####For `update_city_weather` CodeBox config
+
 1. Copy the `CONFIG` from the `get_weather` CodeBox
 2. Click the back arrow, then select `update_city_weather`
 3. Click `CONFIG` and select the entire object.
 4. Paste the `CONFIG` from `get_weather`
 
-These two are exactly the same, make sure they are identical.  The `update_all_current_weather` is _**almost**_ the same, which is always dangerous. You will need the first two properties, `syncano_account_key` and `instance_name`. The third property is the `id` of `update_city_weather` CodeBox.
+The `get_weather` and `update_city_weather` configurations are exactly the same - make sure they are identical.  
+
+#####For `update_all_current_weather` CodeBox config
+
+The `update_all_current_weather` is _**almost**_ the same, which is always dangerous. You will need the first two properties, `syncano_account_key` and `instance_name`. The third property is the `id` of `update_city_weather` CodeBox.
 
 1. Before clicking the back arrow, notice the `id` next to the CodeBox name. Jot that down, then click back.
 2. Click the `update_all_current_weather` CodeBox, and then go to it's `CONFIG`. It should look like this:
@@ -152,7 +160,7 @@ There are a few last steps to view the application in your browser, but we are g
 
 1. Download the [`weather-app`](https://github.com/Syncano/weather-app/archive/master.zip) repo from GitHub.
 2. Unzip the files. and open the folder.
-3. Locate the `index.js` file, and open it in your favorite text editor like Atom, WebStorm, or VIM.
+3. Locate the `index.js` file in the `scripts` folder, and open it in your favorite text editor like Atom, WebStorm, or VIM.
 
 ###Step 3-3 - Update the Application Code
 There are 3 items you need to modify in the `index.js` file.
