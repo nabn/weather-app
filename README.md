@@ -21,7 +21,7 @@ An instance is your app's backend - this is where the magic happens. Here you st
 ####If you just created a new account
 
 1. Click "Create Your First Instance Now"
-2. Then click "Confirm"" tp create a new instance
+2. Then click "Confirm" to create a new instance
 
 ####If you already have an account
 1. Log in to Syncano
@@ -113,7 +113,7 @@ We need to update both the `update_city_weather` and `update_all_current_weather
 3. Click `CONFIG` and select the entire object.
 4. Paste the `CONFIG` from `get_weather`
 
-The `get_weather` and `update_city_weather` configurations are exactly the same - make sure they are identical.  
+The `get_weather` and `update_city_weather` configurations are exactly the same - make sure they are identical.
 
 #####For `update_all_current_weather` CodeBox config
 
@@ -196,7 +196,7 @@ There are 3 items you need to modify in the `index.js` file.
 
 ###Step 3 Complete - Declare Victory
 
-In the `weather-app-master` folder, locate the `index.html` file, and open it in your browser. Type in a city and state name, and press enter.  
+In the `weather-app-master` folder, locate the `index.html` file, and open it in your browser. Type in a city and state name, and press enter.
 
 ##Go Further
 
