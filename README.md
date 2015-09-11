@@ -21,7 +21,7 @@ An instance is your app's backend - this is where the magic happens. Here you st
 ####If you just created a new account
 
 1. Click "Create Your First Instance Now"
-2. Then click "Confirm"" tp create a new instance
+2. Then click "Confirm" tp create a new instance
 
 ####If you already have an account
 1. Log in to Syncano
