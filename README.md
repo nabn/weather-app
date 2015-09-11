@@ -7,7 +7,7 @@ This is the sample Weather Application for the Syncano platform.
 The initial steps will walk you through creating a new Syncano account, creating your instance, and installing the Weather App solution.
 
 ###Step 1-1 Sign up
-If you haven't already, you will need to sign up for a [new Syncnao account](https://dashboard.syncano.io/#/signup). If you already have one, you can skip to step 1.2.
+If you haven't already, you will need to sign up for a [new Syncano account](https://dashboard.syncano.io/#/signup). If you already have one, you can skip to step 1.2.
 
 1. Click the link
 2. Enter an email address
