@@ -35,7 +35,7 @@ Have you ever written an application and wished someone else had already done pa
 
 In the upper right corner, click "Solutions". This is where you will find all of the various pre-made Solutions to install into your application. You can narrow your choices with tags, as well as add Solutions to your list of favorites. 
 
-1. Follow this link - [Weather Sample App](https://dashboard.syncano.io/#/solutions/38/edit)
+1. Follow this link - [Weather Sample App](https://dashboard.syncano.io/#/solutions/40/edit)
 2. Click "Install Solution"
 3. Select the Instance name you made from the previous step
 4. Leave version at `1.0`
@@ -85,15 +85,13 @@ For right now, click `Config`. Here is another editor window, with the following
 ```
 {
   "syncano_account_key": "YOUR ACCOUNT KEY",
-  "instance_name": "YOUR INSTANCE",
   "open_weather_map_api_key": "YOUR OPEN WEATHER API KEY"
 }
 ```
 
 1. Replace "YOUR ACCOUNT KEY" with the `Account Key` you copied in the last step. It's a string, so leave the quotes.
-2. Replace "YOUR INSTANCE" with the Instance name in the upper left corner. Again -- this is a string, so make sure the quotes are there.
-3. Replace "YOUR OPEN WEATHER API KEY" with the OpenWeatherMap API key.  Yes -- also a string.
-4. Click the floppy disk button to the right, and save your config. 
+2. Replace "YOUR OPEN WEATHER API KEY" with the OpenWeatherMap API key.  Yes -- also a string.
+3. Click the floppy disk button to the right, and save your config. 
 
 At this point, you can test the CodeBox on the edit screen. Copy and paste the following code in the `Payload` window.
 
@@ -113,24 +111,22 @@ We need to update both the `update_city_weather` and `update_all_current_weather
 3. Click `CONFIG` and select the entire object
 4. Paste the `CONFIG` from `get_weather`
 
-The `get_weather` and `update_city_weather` configurations are exactly the same; make sure they are identical.  
+The `get_weather` and `update_city_weather` configurations are exactly the same; make sure they are identical. Before you click the back button - write down the `id` in the text `CodeBox: update_city_weather (id: ##)`.
 
 #####For `update_all_current_weather` CodeBox config
 
-The `update_all_current_weather` is _**almost**_ the same, which is always dangerous. You will need the first two properties, `syncano_account_key` and `instance_name`. The third property is the `id` of `update_city_weather` CodeBox.
+The `update_all_current_weather` is _**almost**_ the same, which is always dangerous. You will need the `syncano_account_key` property,  and the second property is the `id` of `update_city_weather` CodeBox.
 
-1. Before clicking the back arrow, notice the `id` next to the CodeBox name. Jot that down, then click back.
-2. Click the `update_all_current_weather` CodeBox, and then go to its `CONFIG`. It should look like this:
+1. Click the `update_all_current_weather` CodeBox, and then go to its `CONFIG`. It should look like this:
 
 	```
 	{
 	  "syncano_account_key": "YOUR ACCOUNT KEY",
-	  "instance_name": "YOUR INSTANCE",
 	  "update_city_weather_codebox_id": "UPDATE CITY WEATHER CODEBOX ID"
 	}
 	```
-3.  Replace the first two lines with the same info as `get_weather` and `update_city_weather`. 
-4.  Change "UPDATE CITY WEATHER CODEBOX ID" to the `id` from `update_city_weather`. Yes, it still needs quotes.
+2.  Replace the first line with `syncano_account_key` from `get_weather` and `update_city_weather`. 
+3.  Change "UPDATE CITY WEATHER CODEBOX ID" to the `id` from `update_city_weather`. Yes, it still needs quotes.
 
 ###Step 2 Complete
 Your application’s backend is completely set up now. Everything you need to run the front end code is done. Let's get the front end working next.
