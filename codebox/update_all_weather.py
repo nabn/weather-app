@@ -4,7 +4,9 @@ import syncano
 syncano_account_key = CONFIG["syncano_account_key"]
 syncano.connect(api_key=syncano_account_key)
 
-instance_name = CONFIG["instance_name"]
+# Get Instance name from the META object
+instance_name = META["instance"]
+
 all_cities = Object.please.list(instance_name=instance_name, class_name="city_weather")
 
 update_city_weather_codebox_id = CONFIG["update_city_weather_codebox_id"]

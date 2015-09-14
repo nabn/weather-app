@@ -16,8 +16,8 @@ ARGS.update(POST)
 syncano_account_key = CONFIG["syncano_account_key"]
 syncano.connect(api_key = syncano_account_key)
 
-# Make sure to put your instance name in the CONFIG file
-instance_name = CONFIG["instance_name"]
+# Get Instance name from the META object
+instance_name = META["instance"]
 
 '''
 This function makes a call to the http://openweathermap.org/ api and gets
