@@ -44,7 +44,7 @@ In the upper right corner, click "Solutions". This is where you will find all of
 After you click confirm, you should be redirected to your Instance, with the notification in the bottom left telling you that it was successfully installed.
 
 ###Step 1 Complete
-Congratulations -- you have completed step 1! You should now have a new Instance with the `Weather Sample App` Solution installed. If not, you may have missed a step -- go try them again.
+Congratulations -- you have completed step 1! You should now have a new Instance with the `Weather Sample App` Solution installed. If not, you may have missed a step and should try them again.
 
 ##Step 2 - Configure a 3rd Party Service
 Syncano is great for tying together many different microservices and 3rd party APIs for your app to consume. In this step, we will set up [OpenWeatherMap](http://openweathermap.org/) to use in our application.
@@ -58,29 +58,27 @@ OpenWeatherMap is a great data source for all things weather. This app merely sc
 4. Click "Create Account"
 5. After logging in, copy and store your `API Key` -- it's just after your email address and name
 
+> A Note about OpenWeatherMap API:  This is a **free** service, and not within Syncano's control. In our testing, we > have expereinced issues with their API response times, although rarely. If you see something that doesn't seem to > be working, please submit an issue to this repo! 
 
 ###Step 2.2 Update CodeBox Configurations
-As a part of the Solution you installed, we included a `CONFIG` for the CodeBoxes to use.  These will need some information before you can proceed, so that they run correctly. 
+As a part of the Solution you installed, there is a `CONFIG` setting that the CodeBoxes use.  This is found in the Syncano dashboard where you edit a CodeBox. The `CONFIG` will need some information before you can proceed.
 
 ####Get your Account Key
 1. Make sure you are logged in to your Syncano Dashboard
-2. Click "Account" in the upper left corner
+2. Click "Account" in the upper right corner
 3. Click your user name (the top menu item)
 4. Then click the "Authentication" menu item
 
 Copy and store your `Account Key` for the next step.
 
-
 ####Update Your First Config
 
-1. Click `syncano` in the upper left to go to the Instance screen
-2. Click the Instance where you installed the Weather App solution
+1. Click the `syncano` log in the upper left to get back to your Instance list
+2. Click the Instance with the `Weather Sample App` Solution installed
 3. In the left side menu, click "CodeBoxes"
 4. Click the `get_weather` CodeBox
 
-You should now be at the `Edit` screen with some `Python` code in an editor window. We will come back to this later.
-
-For right now, click `Config`. Here is another editor window, with the following `JSON` object.
+You should now be at the `Edit` tab with some `Python` code in our CodeBox editor. Don't make any change here. You first need to click `CONFIG` to switch to that tab. It looks very similar to the CodeBox editor screen, but contains only the following `JSON` object:
 
 ```
 {
@@ -99,7 +97,14 @@ At this point, you can test the CodeBox on the edit screen. Copy and paste the f
 {"city": "New York", "state": "NY"}
 ```
 
-Now click the play button on the right, and the terminal window will display the results of your CodeBox run. If it doesn't work, check your `CONFIG` and make sure you have everything there set up properly. 
+Now click the play button on the right, and the terminal window will display the results of your CodeBox run. If it doesn't work, check your `CONFIG` and make sure you have everything typed correctly.
+
+If everything is working, you should recieve something similar to this:
+
+```
+[{"utc": 1442395087, "temp": 295, "city_id": 5128581, "temp_low": 293, "temp_high": 296, "short_description": "Rain", "long_description": "moderate rain"}, {"utc": 1442419200, "temp": 298, "temp_low": 286, "temp_high": 300, "short_description": "Clear", "long_description": "sky is clear"}, {"utc": 1442505600, "temp": 298, "temp_low": 287, "temp_high": 301, "short_description": "Clear", "long_description": "sky is clear"}, {"utc": 1442592000, "temp": 298, "temp_low": 288, "temp_high": 302, "short_description": "Clear", "long_description": "sky is clear"}, {"utc": 1442678400, "temp": 297, "temp_low": 293, "temp_high": 297, "short_description": "Rain", "long_description": "moderate rain"}]
+```
+If you have edited the `Python` code and it now is giving errors, skip ahead to step 3.2 and download the app code - there is a backup copy you can use there. Then come back and check again.
 
 ####Update Remaining Configurations
 We need to update both the `update_city_weather` and `update_all_current_weather` configurations. 
@@ -136,13 +141,7 @@ Your application’s backend is completely set up now. Everything you need to ru
 So far, you have installed a Solution into a new Instance, created your OpenWeatherMap account, and updated your CodeBox configurations.  If you have everything right, then there are only a couple more tasks left.
 
 ###Step 3.1 - Create an Instance API Key
-There are three API keys in Syncano for various security levels: 
-
-+ The `Account Key`, which controls _everything_; and with great power, comes great responsibility -- so be careful. We use it in the CodeBox, because those are server side processes and there is no access to it.
-+ The `API Key`, which is at the Instance level and essentially scopes the data to that specific Instance. It has limited access to everything.
-+ The `User Key`, which is specific to every user in your application. You don't have direct access to that without credentials from the user. 
-
-For this, we only need the `API Key`.  But first, we need to create it.
+In order to run the application, we need to create an Instance API key - which is a key for this specific Instance and scopes the data. It has limited access to everything - so it only have access to data to which it has been give access. You can read more about the [different authentication options](http://docs.syncano.com/docs/authentication) in our documentation.
 
 1. Make sure you are logged in your Syncano Dashboard
 2. Navigate to your Instance with the `Weather Sample App` Solution installed
@@ -154,7 +153,7 @@ After you confirm, you will see your `API Key`. Copy that and save it somewhere 
 ###Step 3.2 - Download the Application Code
 There are a few last steps before you can view the application in your browser, but we are getting closer. Excited? Me too!
 
-1. Download the [`weather-app`](https://github.com/Syncano/weather-app/archive/master.zip) repo from GitHub. 
+1. Download the [`weather-app`](https://github.com/Syncano/weather-app/archive/master.zip) repo. 
 2. Unzip the files and open the folder. 
 3. Locate the `index.js` file in the `scripts` folder, and open it in your favorite text editor, such as Atom, WebStorm, or VIM. 
 
