@@ -24,26 +24,8 @@ var condition = {
 	haze: 'wi-day-haze'
 };
 
-// Handlebar template setup
-Handlebars.registerHelper('displayTemp', function(k) {
-  var out = convertTemp(k) + '<sup>°<span>' + scale + '</span></sup>';
-  return new Handlebars.SafeString(out);
-});
 
-Handlebars.registerHelper('displayIcon', function(desc) {
-	var out = '<i class="wi ' + getWeatherIcon(desc) + '"></i>';
-  return new Handlebars.SafeString(out);
-});
-
-Handlebars.registerHelper('displayDay', function(t) {
-	var day = new Date(t*1000);
-  return new Handlebars.SafeString(day.toDateString().substring(0, 3));
-});
-
-
-var wBoxTemplate = Handlebars.compile($('#wBox-template').html());
-
-
+//helper function to return correct weather icon
 function getWeatherIcon(desc) {
 	var keys = Object.keys(condition);
 
@@ -55,10 +37,69 @@ function getWeatherIcon(desc) {
 	}
 
 	return 'wi-day-cloudy';
+};
+
+//helper function to convert kelvin to ahrenheit
+function kToF(k) {
+	 return (Math.round(kToC(k) * 1.8000 + 32.00));
+};
+
+//helper function to convert kelvin to celcius
+function kToC(k) {
+	return (Math.round(k - 273.15));
+};
+
+//converts temp to proper scale depending on current setting of F or C
+function convertTemp(k) {
+	if (scale === "F") {
+		return kToF(k);
+	} else {
+		return kToC(k);
+	}
+}
+
+//click handler for the F/C toggle in the UI
+function toggleScale() {
+	scale = (scale === 'F') ? 'C' : 'F';
+
+	$('#scale span').text(scale);
+	var temps = $('*[data-temp]');
+	//console.log(temps);
+	for (var i = 0; i < temps.length; i++) {
+		$t = $(temps[i]);
+		//convert the temperature
+		$t.get(0).childNodes[0].nodeValue = convertTemp($t.data("temp"));
+		//change the scale text
+		$t.find('span').text(scale);
+	}
 }
 
 
-//This is where all of the real time action happens with Syncano. For each ci
+// Handlebar helpers
+
+//take a temp in kelvin, and displays the proper temperature
+Handlebars.registerHelper('displayTemp', function(k) {
+  var out = convertTemp(k) + '<sup>°<span>' + scale + '</span></sup>';
+  return new Handlebars.SafeString(out);
+});
+
+//takes the short description from the data result, and returns the proper class for the weather icon
+Handlebars.registerHelper('displayIcon', function(desc) {
+	var out = '<i class="wi ' + getWeatherIcon(desc) + '"></i>';
+  return new Handlebars.SafeString(out);
+});
+
+//takes a string representation of utc time, and outouts the proper day, abbreviated to three letters
+Handlebars.registerHelper('displayDay', function(t) {
+	var day = new Date(t*1000);
+  return new Handlebars.SafeString(day.toDateString().substring(0, 3));
+});
+
+//compile handlebar templates first
+var wBoxTemplate = Handlebars.compile($('#wBox-template').html());
+
+
+//This is where all of the real time action happens with Syncano.
 function sync(id) {
 	console.log('syncing');
 	var realtime =  syncano.channel("weather_realtime").watch({room: id});
@@ -80,8 +121,8 @@ function sync(id) {
 
 }
 
+// Creates a weather box whenever the 'Add' button is pressed.
 function addWBox() {
-	// Creates a weather box whenever the 'Add' button is pressed.
 	var name = $( '#city' ).val();
 	var city = '?city=' + name.split(' ').join('%20');
 	var state = '&state=' + $( '#state' ).val();
@@ -95,43 +136,9 @@ function addWBox() {
 		sync(obj.cityId);
 	});
 
-
 	$( '#empty' ).hide();
 
 };
-
-
-function kToF(k) {
-	 return (Math.round(kToC(k) * 1.8000 + 32.00));
-};
-
-function kToC(k) {
-	return (Math.round(k - 273.15));
-};
-
-function convertTemp(k) {
-	if (scale === "F") {
-		return kToF(k);
-	} else {
-		return kToC(k);
-	}
-}
-
-function toggleScale() {
-	scale = (scale === 'F') ? 'C' : 'F';
-
-	$('#scale span').text(scale);
-	var temps = $('*[data-temp]');
-	//console.log(temps);
-	for (var i = 0; i < temps.length; i++) {
-		$t = $(temps[i]);
-		//convert the temperature
-		$t.get(0).childNodes[0].nodeValue = convertTemp($t.data("temp"));
-		//change the scale text
-		$t.find('span').text(scale);
-	}
-}
-
 
 // Set onClick handler for button and Enter Key for text boxes
 $(document).ready(function(){
