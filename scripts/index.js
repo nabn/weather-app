@@ -5,10 +5,10 @@ This weather app fetches the weather data of a city and continually updates it
 
 // Setup
 var scale = "F";
-var BASE_URL = "ADD YOUR WEBHOOK HERE";
+var BASE_URL = "https://api.syncano.io/v1/instances/little-voice-3459/webhooks/p/d136fe5ce6831f2a6f7b5cec220695b87cf48c77/gets_all_weather/";
 var syncano = new Syncano({
-	apiKey: 'YOUR API KEY',
-	instance: 'YOUR INSTANCE NAME'
+	apiKey: 'f93b5c0032ebb3d174f388be811f37db62de9b55',
+	instance: 'little-voice-3459'
 });
 
 //Map of conditions to weather icon class for matching
