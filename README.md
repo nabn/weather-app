@@ -73,7 +73,7 @@ Copy and store your `Account Key` for the next step.
 
 ####Update Your First Config
 
-1. Click the `syncano` log in the upper left to get back to your Instance list
+1. Click the `syncano` logo in the upper left to get back to your Instance list
 2. Click the Instance with the `Weather Sample App` Solution installed
 3. In the left side menu, click "CodeBoxes"
 4. Click the `get_weather` CodeBox
